@@ -2,7 +2,7 @@
 
 A three-agent workflow built with [CrewAI](https://www.crewai.com/) and Claude that researches a topic, drafts an executive brief, and audits it for unsupported claims before writing the final result to `executive_brief.md`.
 
-The demo topic is **data center energy constraints and PG&E grid capacity upgrades in Northern California**, but the topic lives in the agent goals and task descriptions in main.py and can be swapped for anything.
+The demo topic is **data center energy constraints and PG&E grid capacity upgrades in Northern California**, but the topic lives in the agent goals and task descriptions in `main.py` and can be swapped for anything.
 
 ## How it works
 
@@ -78,8 +78,6 @@ A sample output is included in this repo as `executive_brief.md`.
 - Add a source-citation requirement and have the auditor reject any claim without one.
 - Parameterize the topic through a command-line argument.
 - Log token usage and cost per run.
-
-Screenshots: save images in a docs/ folder, then uncomment and edit these lines.
 
 ## Screenshots
 
