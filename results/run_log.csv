@@ -1,0 +1,13 @@
+topic,status,seconds,total_tokens,prompt_tokens,completion_tokens
+Northern California data center energy constraints and PG&E grid capacity upgrades,ok,92,67575,30312,37263
+Ransomware trends affecting hospitals in the United States,ok,89,138069,64437,73632
+Adoption of multi-factor authentication in small businesses,ok,83,64638,31572,33066
+Cloud cost optimization (FinOps) for mid-sized companies,ok,76,127830,63702,64128
+Zero trust architecture adoption in enterprises,ok,80,196329,99498,96831
+Generative AI governance policies in large corporations,ok,85,262581,130146,132435
+Supply chain visibility technology in retail,ok,86,331146,163818,167328
+Data privacy compliance for California businesses (CCPA/CPRA),ok,90,403350,198069,205281
+Phishing attack trends and employee security training,ok,81,469233,230868,238365
+ERP system migration risks for mid-sized manufacturers,ok,75,530043,261267,268776
+Edge computing in logistics and warehousing,ok,73,593388,294576,298812
+Cyber insurance market conditions for small and mid-sized businesses,ok,98,667176,328503,338673

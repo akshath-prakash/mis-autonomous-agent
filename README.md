@@ -83,3 +83,58 @@ A sample output is included in this repo as `executive_brief.md`.
 
 ![Agents running in the terminal](docs/terminal-run.png)
 ![Generated executive brief](docs/executive-brief.png)
+
+## Results
+
+I tested the pipeline on 12 topics (listed in `evaluate.py`). For each topic I saved the researcher's notes, the writer's draft, and the auditor's final brief, then split each draft into individual claims and checked what the auditor did with each one.
+
+**How the claims were labeled.** Each claim was labeled (1) *supported or not by the researcher's notes* and (2) *kept or changed by the auditor*. Recommendations and notes about the brief itself were excluded. The labels were drafted with Claude, and I checked 30 randomly chosen claims blind (without seeing its labels or the auditor's review log). The full labeled data is in `claims_labeled.csv`.
+
+### What was measured
+
+| Measure | Result |
+|---|---|
+| Topics run | 12 of 12 completed |
+| Average run time | about 84 seconds per topic |
+| Tokens used | about 805,000 total (about 67,000 per topic) |
+| Draft claims analyzed | 272 |
+| Claims the auditor changed (removed, softened, or flagged) | 92 (34%) |
+| ...of those, labeled stronger than the research supports | 48 |
+| ...of those, supported claims that were edited anyway (tighter wording, extra "verify" flags) | 44 |
+| Unsupported claims the auditor left unchanged | none found (see limitations) |
+
+### Per-topic breakdown
+
+| Topic | Claims | Edited by auditor | Labeled unsupported |
+|---|---|---|---|
+| CCPA/CPRA compliance | 25 | 5 | 4 |
+| Cloud cost (FinOps) | 20 | 5 | 4 |
+| Cyber insurance for SMBs | 22 | 9 | 3 |
+| Data center energy (PG&E) | 23 | 12 | 6 |
+| ERP migration risks | 21 | 7 | 3 |
+| Edge computing in logistics | 23 | 4 | 4 |
+| GenAI governance | 23 | 10 | 3 |
+| MFA in small businesses | 24 | 9 | 7 |
+| Phishing and training | 22 | 9 | 4 |
+| Ransomware in hospitals | 25 | 10 | 4 |
+| Supply chain visibility | 22 | 5 | 3 |
+| Zero trust adoption | 22 | 7 | 3 |
+
+### How reliable are the labels?
+
+- On the 30-claim blind check, my labels agreed with Claude's on 18 (60%) at first and 23 (77%) after I re-read the 12 disagreements.
+- I agreed on 3 of the 10 sampled claims labeled "unsupported." On the other 7, I read the claim as supported by the research. These were mostly about wording strength, such as "becoming core infrastructure" or "a question of when, not whether."
+- One claim labeled "supported" turned out to be unsupported ("often shallow").
+- So the count of **unsupported claims is subjective**. The firmer findings are the counts: 272 claims, 92 edited, and that the auditor mostly tightens wording and adds caveats.
+
+### Limitations
+
+- **"Supported" means consistent with the researcher's notes, not true.** The researcher has no web access, so its facts may be wrong. I did not check the notes against real sources.
+- **All three agents are the same model**, so they can share blind spots.
+- **Labels were made after seeing the auditor's review log**, which likely understates the claims the auditor missed.
+- Small sample, one human reviewer, and many borderline calls.
+- Cost in dollars is not included. See the Anthropic console for usage.
+
+### Takeaway
+
+The auditor reliably rewrites overstated phrasing and adds uncertainty flags, and it edits about a third of the claims. This test does not show that it finds *factual errors*, because the pipeline has no way to check facts against outside sources. The next improvement would be to give the researcher a web search tool and have the auditor check claims against cited sources.
